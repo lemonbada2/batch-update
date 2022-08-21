@@ -1,0 +1,19 @@
+demo:
+  datasource:
+    source:
+      url: jdbc:mariadb://192.168.137.73:3306/pmsportal
+      username: lemonbada
+      password: fpahsqkek
+      driver-class-name: org.mariadb.jdbc.Driver
+    target:
+      url: jdbc:mariadb://192.168.137.73:3306/pmsportal
+      username: lemonbada
+      password: fpahsqkek
+      driver-class-name: org.mariadb.jdbc.Driver
+  batch-count: 300_000
+  truncate-target: true
+  tables: a_test
+
+logging:
+  level:
+    root: error
