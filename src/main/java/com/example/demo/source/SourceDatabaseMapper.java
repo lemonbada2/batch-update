@@ -20,7 +20,7 @@ public interface SourceDatabaseMapper {
             @Param("limit") Long limit,
             @Param("offset") Long offset);
 
-    //@Select("select table_rows from information_schema.tables where table_name = #{tableName}")
-    @Select("select count(*) from ${tableName}")
+    @Select("select table_rows from information_schema.tables where table_name = #{tableName}")
+    /*@Select("select count(*) from ${tableName}")*/
     Long count(String tableName);
 }

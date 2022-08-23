@@ -13,6 +13,8 @@ demo:
   batch-count: 300_000
   truncate-target: true
   tables: a_test
+  source-prefix:
+  target-prefix:
 
 logging:
   level:

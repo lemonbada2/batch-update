@@ -37,18 +37,31 @@ public class DemoService {
     @Value("${demo.batch-count}")
     Long batchCount;
 
+    @Value("${demo.source-prefix}")
+    String sourcePrefix;
+
+    @Value("${demo.target-prefix}")
+    String targetPrefix;
+
+
+    public Boolean isEmpty(String str){
+        if(str==null) return true;
+        return str.isEmpty();
+    }
+
     public void batch() {
 
         StopWatch stopWatch = new StopWatch();
 
         tables.stream().forEach(table -> {
 
-            var targetTable = table + "_cp";
+            var sourceTable = isEmpty(sourcePrefix) ? table : MessageFormat.format("{0}.{1}", sourcePrefix, table);
+            var targetTable = isEmpty(targetPrefix) ? table : MessageFormat.format("{0}.{1}", targetPrefix, table);
 
-            System.out.println(MessageFormat.format(">>> retrieving meta....{0}", table));
-            var columns = sourceDatabaseMapper.findColumnsByTableName(table);
+            System.out.println(MessageFormat.format(">>> retrieving meta....{0}", sourceTable));
+            var columns = sourceDatabaseMapper.findColumnsByTableName(sourceTable);
 
-            System.out.println(MessageFormat.format(">>> counting....{0}", table));
+            System.out.println(MessageFormat.format(">>> counting....{0}", sourceTable));
             var totalCount = sourceDatabaseMapper.count(table);
 
             if(truncateTarget) {
@@ -77,7 +90,7 @@ public class DemoService {
 
                     var offset = page * batchCount;
                     stopWatch.start("[RETRIVE]");
-                    var data = sourceDatabaseMapper.findDataByTableName(table, batchCount, offset);
+                    var data = sourceDatabaseMapper.findDataByTableName(sourceTable, batchCount, offset);
                     stopWatch.stop();
                     System.out.println(">> retrieve : " + stopWatch.getTotalTimeSeconds());
 
