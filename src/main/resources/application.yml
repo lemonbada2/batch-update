@@ -1,3 +1,5 @@
+# source (maria db 만 가능)
+# source, target (서로 같을 수 없음)
 demo:
   datasource:
     source:
