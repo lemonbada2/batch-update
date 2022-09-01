@@ -11,7 +11,7 @@ import java.util.Map;
 @Mapper
 public interface TargetDatabaseMapper {
 
-    @Select("truncate table ${tableName}")
-    List<String> truncate(String tableName);
+    @Select("truncate table ${tableSchema}.${tableName}")
+    List<String> truncate(@Param("tableSchema")String tableSchema, @Param("tableName") String tableName);
 
 }

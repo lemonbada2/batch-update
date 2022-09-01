@@ -8,16 +8,22 @@ demo:
       password: fpahsqkek
       driver-class-name: org.mariadb.jdbc.Driver
     target:
-      url: jdbc:mariadb://192.168.137.73:3306/pmsportal
+      url: jdbc:mariadb://192.168.137.73:3306/pmsdata
       username: lemonbada
       password: fpahsqkek
       driver-class-name: org.mariadb.jdbc.Driver
   batch-count: 300_000
   truncate-target: true
   tables: a_test
-  source-prefix: pmsportal
-  target-prefix: inhacra
+  source-schema: pmsportal
+  source-where-clause: id > 9000000
+  target-schema: pmsdata
 
 logging:
+  file:
+    path: batch-log
+    max-size: 100MB
+    max-history: 10
   level:
     root: error
+    com.example.demo: debug

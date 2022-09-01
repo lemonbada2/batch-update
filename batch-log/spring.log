@@ -1,0 +1,268 @@
+2022-09-01 16:20:06.204  INFO 12220 --- [main] com.example.demo.DemoApplication         : Starting DemoApplication using Java 11 on DESKTOP-0PC7AQK with PID 12220 (D:\Dev\batch-update\out\production\classes started by lemonbada in D:\Dev\batch-update)
+2022-09-01 16:20:06.204 DEBUG 12220 --- [main] com.example.demo.DemoApplication         : Running with Spring Boot v2.7.2, Spring v5.3.22
+2022-09-01 16:20:06.209  INFO 12220 --- [main] com.example.demo.DemoApplication         : No active profile set, falling back to 1 default profile: "default"
+2022-09-01 16:20:07.088  INFO 12220 --- [main] com.example.demo.DemoApplication         : Started DemoApplication in 1.265 seconds (JVM running for 1.614)
+2022-09-01 16:20:07.088 DEBUG 12220 --- [main] com.example.demo.service.DemoService     : :::retrieving meta... pmsportal.a_test
+2022-09-01 16:20:07.187 DEBUG 12220 --- [main] .e.d.s.S.findColumnsBySchemaAndTableName : ==>  Preparing: select column_name from information_schema.columns where table_schema = ? and table_name = ? order by ORDINAL_POSITION
+2022-09-01 16:20:07.203 DEBUG 12220 --- [main] .e.d.s.S.findColumnsBySchemaAndTableName : ==> Parameters: pmsportal(String), a_test(String)
+2022-09-01 16:20:07.235 DEBUG 12220 --- [main] .e.d.s.S.findColumnsBySchemaAndTableName : <==      Total: 21
+2022-09-01 16:20:07.235 DEBUG 12220 --- [main] com.example.demo.service.DemoService     : :::counting... pmsportal.a_test
+2022-09-01 16:20:07.235 DEBUG 12220 --- [main] c.e.d.source.SourceDatabaseMapper.count  : ==>  Preparing: select table_rows from information_schema.tables where table_schema = ? and table_name = ?
+2022-09-01 16:20:07.235 DEBUG 12220 --- [main] c.e.d.source.SourceDatabaseMapper.count  : ==> Parameters: pmsportal(String), a_test(String)
+2022-09-01 16:20:07.235 DEBUG 12220 --- [main] c.e.d.source.SourceDatabaseMapper.count  : <==      Total: 1
+2022-09-01 16:20:07.235 DEBUG 12220 --- [main] com.example.demo.service.DemoService     : :::truncating....pmsdata.a_test
+2022-09-01 16:20:07.266 DEBUG 12220 --- [main] c.e.d.t.TargetDatabaseMapper.truncate    : ==>  Preparing: truncate table pmsdata.a_test
+2022-09-01 16:20:07.266 DEBUG 12220 --- [main] c.e.d.t.TargetDatabaseMapper.truncate    : ==> Parameters: 
+2022-09-01 16:20:07.304 DEBUG 12220 --- [main] com.example.demo.service.DemoService     : :::retrieving data... (batch count = 300,000).... 1/32
+2022-09-01 16:20:07.304 DEBUG 12220 --- [main] c.e.d.s.S.findDataByTableName            : ==>  Preparing: select * from a_test limit ? offset 0
+2022-09-01 16:20:07.304 DEBUG 12220 --- [main] c.e.d.s.S.findDataByTableName            : ==> Parameters: 300000(Long)
+2022-09-01 16:20:08.415 DEBUG 12220 --- [main] c.e.d.s.S.findDataByTableName            : <==      Total: 300000
+2022-09-01 16:20:08.713 DEBUG 12220 --- [main] com.example.demo.service.DemoService     : :::executing batch
+2022-09-01 16:20:09.904 DEBUG 12220 --- [main] com.example.demo.service.DemoService     : :::retrieving data... (batch count = 300,000).... 2/32
+2022-09-01 16:20:09.904 DEBUG 12220 --- [main] c.e.d.s.S.findDataByTableName            : ==>  Preparing: select * from a_test limit ? offset 300000
+2022-09-01 16:20:09.904 DEBUG 12220 --- [main] c.e.d.s.S.findDataByTableName            : ==> Parameters: 300000(Long)
+2022-09-01 16:20:10.980 DEBUG 12220 --- [main] c.e.d.s.S.findDataByTableName            : <==      Total: 300000
+2022-09-01 16:20:11.295 DEBUG 12220 --- [main] com.example.demo.service.DemoService     : :::executing batch
+2022-09-01 16:20:12.234 DEBUG 12220 --- [main] com.example.demo.service.DemoService     : :::retrieving data... (batch count = 300,000).... 3/32
+2022-09-01 16:20:12.245 DEBUG 12220 --- [main] c.e.d.s.S.findDataByTableName            : ==>  Preparing: select * from a_test limit ? offset 600000
+2022-09-01 16:20:12.245 DEBUG 12220 --- [main] c.e.d.s.S.findDataByTableName            : ==> Parameters: 300000(Long)
+2022-09-01 16:20:13.583 DEBUG 12220 --- [main] c.e.d.s.S.findDataByTableName            : <==      Total: 300000
+2022-09-01 16:20:13.829 DEBUG 12220 --- [main] com.example.demo.service.DemoService     : :::executing batch
+2022-09-01 16:20:14.848 DEBUG 12220 --- [main] com.example.demo.service.DemoService     : :::retrieving data... (batch count = 300,000).... 4/32
+2022-09-01 16:20:14.848 DEBUG 12220 --- [main] c.e.d.s.S.findDataByTableName            : ==>  Preparing: select * from a_test limit ? offset 900000
+2022-09-01 16:20:14.848 DEBUG 12220 --- [main] c.e.d.s.S.findDataByTableName            : ==> Parameters: 300000(Long)
+2022-09-01 16:20:15.917 DEBUG 12220 --- [main] c.e.d.s.S.findDataByTableName            : <==      Total: 300000
+2022-09-01 16:20:16.134 DEBUG 12220 --- [main] com.example.demo.service.DemoService     : :::executing batch
+2022-09-01 16:20:17.357 DEBUG 12220 --- [main] com.example.demo.service.DemoService     : :::retrieving data... (batch count = 300,000).... 5/32
+2022-09-01 16:20:17.357 DEBUG 12220 --- [main] c.e.d.s.S.findDataByTableName            : ==>  Preparing: select * from a_test limit ? offset 1200000
+2022-09-01 16:20:17.357 DEBUG 12220 --- [main] c.e.d.s.S.findDataByTableName            : ==> Parameters: 300000(Long)
+2022-09-01 16:20:18.912 DEBUG 12220 --- [main] c.e.d.s.S.findDataByTableName            : <==      Total: 300000
+2022-09-01 16:20:19.132 DEBUG 12220 --- [main] com.example.demo.service.DemoService     : :::executing batch
+2022-09-01 16:20:20.024 DEBUG 12220 --- [main] com.example.demo.service.DemoService     : :::retrieving data... (batch count = 300,000).... 6/32
+2022-09-01 16:20:20.024 DEBUG 12220 --- [main] c.e.d.s.S.findDataByTableName            : ==>  Preparing: select * from a_test limit ? offset 1500000
+2022-09-01 16:20:20.024 DEBUG 12220 --- [main] c.e.d.s.S.findDataByTableName            : ==> Parameters: 300000(Long)
+2022-09-01 16:25:36.993  INFO 11976 --- [main] com.example.demo.DemoApplication         : Starting DemoApplication using Java 11 on DESKTOP-0PC7AQK with PID 11976 (D:\Dev\batch-update\out\production\classes started by lemonbada in D:\Dev\batch-update)
+2022-09-01 16:25:36.993 DEBUG 11976 --- [main] com.example.demo.DemoApplication         : Running with Spring Boot v2.7.2, Spring v5.3.22
+2022-09-01 16:25:36.993  INFO 11976 --- [main] com.example.demo.DemoApplication         : No active profile set, falling back to 1 default profile: "default"
+2022-09-01 16:25:37.824  INFO 11976 --- [main] com.example.demo.DemoApplication         : Started DemoApplication in 1.284 seconds (JVM running for 1.646)
+2022-09-01 16:25:37.840 DEBUG 11976 --- [main] com.example.demo.service.DemoService     : :::retrieving meta... pmsportal.a_test
+2022-09-01 16:25:37.936 DEBUG 11976 --- [main] .e.d.s.S.findColumnsBySchemaAndTableName : ==>  Preparing: select column_name from information_schema.columns where table_schema = ? and table_name = ? order by ORDINAL_POSITION
+2022-09-01 16:25:37.952 DEBUG 11976 --- [main] .e.d.s.S.findColumnsBySchemaAndTableName : ==> Parameters: pmsportal(String), a_test(String)
+2022-09-01 16:25:37.967 DEBUG 11976 --- [main] .e.d.s.S.findColumnsBySchemaAndTableName : <==      Total: 21
+2022-09-01 16:25:37.983 DEBUG 11976 --- [main] com.example.demo.service.DemoService     : :::counting... pmsportal.a_test
+2022-09-01 16:25:37.983 DEBUG 11976 --- [main] c.e.d.source.SourceDatabaseMapper.count  : ==>  Preparing: select table_rows from information_schema.tables where table_schema = ? and table_name = ?
+2022-09-01 16:25:37.983 DEBUG 11976 --- [main] c.e.d.source.SourceDatabaseMapper.count  : ==> Parameters: pmsportal(String), a_test(String)
+2022-09-01 16:25:37.983 DEBUG 11976 --- [main] c.e.d.source.SourceDatabaseMapper.count  : <==      Total: 1
+2022-09-01 16:25:37.983 DEBUG 11976 --- [main] com.example.demo.service.DemoService     : :::truncating....pmsdata.a_test
+2022-09-01 16:25:37.999 DEBUG 11976 --- [main] c.e.d.t.TargetDatabaseMapper.truncate    : ==>  Preparing: truncate table pmsdata.a_test
+2022-09-01 16:25:37.999 DEBUG 11976 --- [main] c.e.d.t.TargetDatabaseMapper.truncate    : ==> Parameters: 
+2022-09-01 16:25:38.031 DEBUG 11976 --- [main] com.example.demo.service.DemoService     : :::retrieving data... (batch count = 300,000).... 1/32
+2022-09-01 16:25:38.031 DEBUG 11976 --- [main] c.e.d.s.S.findDataByTableName            : ==>  Preparing: select * from a_test where id > 1610700 limit ? offset ?
+2022-09-01 16:25:38.031 DEBUG 11976 --- [main] c.e.d.s.S.findDataByTableName            : ==> Parameters: 300000(Long), 0(Long)
+2022-09-01 16:25:38.933 DEBUG 11976 --- [main] c.e.d.s.S.findDataByTableName            : <==      Total: 300000
+2022-09-01 16:25:39.240 DEBUG 11976 --- [main] com.example.demo.service.DemoService     : :::executing batch
+2022-09-01 16:25:40.411 DEBUG 11976 --- [main] com.example.demo.service.DemoService     : :::retrieving data... (batch count = 300,000).... 2/32
+2022-09-01 16:25:40.457 DEBUG 11976 --- [main] c.e.d.s.S.findDataByTableName            : ==>  Preparing: select * from a_test where id > 1610700 limit ? offset ?
+2022-09-01 16:25:40.457 DEBUG 11976 --- [main] c.e.d.s.S.findDataByTableName            : ==> Parameters: 300000(Long), 300000(Long)
+2022-09-01 16:25:41.702 DEBUG 11976 --- [main] c.e.d.s.S.findDataByTableName            : <==      Total: 300000
+2022-09-01 16:25:41.971 DEBUG 11976 --- [main] com.example.demo.service.DemoService     : :::executing batch
+2022-09-01 16:25:42.944 DEBUG 11976 --- [main] com.example.demo.service.DemoService     : :::retrieving data... (batch count = 300,000).... 3/32
+2022-09-01 16:25:42.944 DEBUG 11976 --- [main] c.e.d.s.S.findDataByTableName            : ==>  Preparing: select * from a_test where id > 1610700 limit ? offset ?
+2022-09-01 16:25:42.944 DEBUG 11976 --- [main] c.e.d.s.S.findDataByTableName            : ==> Parameters: 300000(Long), 600000(Long)
+2022-09-01 16:25:44.034 DEBUG 11976 --- [main] c.e.d.s.S.findDataByTableName            : <==      Total: 300000
+2022-09-01 16:25:44.269 DEBUG 11976 --- [main] com.example.demo.service.DemoService     : :::executing batch
+2022-09-01 16:25:45.319 DEBUG 11976 --- [main] com.example.demo.service.DemoService     : :::retrieving data... (batch count = 300,000).... 4/32
+2022-09-01 16:25:45.319 DEBUG 11976 --- [main] c.e.d.s.S.findDataByTableName            : ==>  Preparing: select * from a_test where id > 1610700 limit ? offset ?
+2022-09-01 16:25:45.319 DEBUG 11976 --- [main] c.e.d.s.S.findDataByTableName            : ==> Parameters: 300000(Long), 900000(Long)
+2022-09-01 16:25:46.590 DEBUG 11976 --- [main] c.e.d.s.S.findDataByTableName            : <==      Total: 300000
+2022-09-01 16:25:46.841 DEBUG 11976 --- [main] com.example.demo.service.DemoService     : :::executing batch
+2022-09-01 16:25:47.687 DEBUG 11976 --- [main] com.example.demo.service.DemoService     : :::retrieving data... (batch count = 300,000).... 5/32
+2022-09-01 16:25:47.687 DEBUG 11976 --- [main] c.e.d.s.S.findDataByTableName            : ==>  Preparing: select * from a_test where id > 1610700 limit ? offset ?
+2022-09-01 16:25:47.687 DEBUG 11976 --- [main] c.e.d.s.S.findDataByTableName            : ==> Parameters: 300000(Long), 1200000(Long)
+2022-09-01 16:25:49.435 DEBUG 11976 --- [main] c.e.d.s.S.findDataByTableName            : <==      Total: 300000
+2022-09-01 16:25:49.685 DEBUG 11976 --- [main] com.example.demo.service.DemoService     : :::executing batch
+2022-09-01 16:25:50.563 DEBUG 11976 --- [main] com.example.demo.service.DemoService     : :::retrieving data... (batch count = 300,000).... 6/32
+2022-09-01 16:25:50.563 DEBUG 11976 --- [main] c.e.d.s.S.findDataByTableName            : ==>  Preparing: select * from a_test where id > 1610700 limit ? offset ?
+2022-09-01 16:25:50.563 DEBUG 11976 --- [main] c.e.d.s.S.findDataByTableName            : ==> Parameters: 300000(Long), 1500000(Long)
+2022-09-01 16:25:52.268 DEBUG 11976 --- [main] c.e.d.s.S.findDataByTableName            : <==      Total: 300000
+2022-09-01 16:25:52.541 DEBUG 11976 --- [main] com.example.demo.service.DemoService     : :::executing batch
+2022-09-01 16:25:53.399 DEBUG 11976 --- [main] com.example.demo.service.DemoService     : :::retrieving data... (batch count = 300,000).... 7/32
+2022-09-01 16:25:53.399 DEBUG 11976 --- [main] c.e.d.s.S.findDataByTableName            : ==>  Preparing: select * from a_test where id > 1610700 limit ? offset ?
+2022-09-01 16:25:53.399 DEBUG 11976 --- [main] c.e.d.s.S.findDataByTableName            : ==> Parameters: 300000(Long), 1800000(Long)
+2022-09-01 16:25:55.782 DEBUG 11976 --- [main] c.e.d.s.S.findDataByTableName            : <==      Total: 300000
+2022-09-01 16:25:56.020 DEBUG 11976 --- [main] com.example.demo.service.DemoService     : :::executing batch
+2022-09-01 16:27:09.047  INFO 9748 --- [main] com.example.demo.DemoApplication         : Starting DemoApplication using Java 11 on DESKTOP-0PC7AQK with PID 9748 (D:\Dev\batch-update\out\production\classes started by lemonbada in D:\Dev\batch-update)
+2022-09-01 16:27:09.047 DEBUG 9748 --- [main] com.example.demo.DemoApplication         : Running with Spring Boot v2.7.2, Spring v5.3.22
+2022-09-01 16:27:09.047  INFO 9748 --- [main] com.example.demo.DemoApplication         : No active profile set, falling back to 1 default profile: "default"
+2022-09-01 16:27:09.815  INFO 9748 --- [main] com.example.demo.DemoApplication         : Started DemoApplication in 1.145 seconds (JVM running for 1.467)
+2022-09-01 16:27:09.815 DEBUG 9748 --- [main] com.example.demo.service.DemoService     : :::retrieving meta... pmsportal.a_test
+2022-09-01 16:27:09.907 DEBUG 9748 --- [main] .e.d.s.S.findColumnsBySchemaAndTableName : ==>  Preparing: select column_name from information_schema.columns where table_schema = ? and table_name = ? order by ORDINAL_POSITION
+2022-09-01 16:27:09.919 DEBUG 9748 --- [main] .e.d.s.S.findColumnsBySchemaAndTableName : ==> Parameters: pmsportal(String), a_test(String)
+2022-09-01 16:27:09.950 DEBUG 9748 --- [main] .e.d.s.S.findColumnsBySchemaAndTableName : <==      Total: 21
+2022-09-01 16:27:09.950 DEBUG 9748 --- [main] com.example.demo.service.DemoService     : :::counting... pmsportal.a_test
+2022-09-01 16:27:09.966 DEBUG 9748 --- [main] c.e.d.source.SourceDatabaseMapper.count  : ==>  Preparing: select count(*) from pmsportal.a_test where id > 1610700
+2022-09-01 16:27:09.966 DEBUG 9748 --- [main] c.e.d.source.SourceDatabaseMapper.count  : ==> Parameters: 
+2022-09-01 16:27:12.995 DEBUG 9748 --- [main] c.e.d.source.SourceDatabaseMapper.count  : <==      Total: 1
+2022-09-01 16:27:12.995 DEBUG 9748 --- [main] com.example.demo.service.DemoService     : :::truncating....pmsdata.a_test
+2022-09-01 16:27:13.009 DEBUG 9748 --- [main] c.e.d.t.TargetDatabaseMapper.truncate    : ==>  Preparing: truncate table pmsdata.a_test
+2022-09-01 16:27:13.009 DEBUG 9748 --- [main] c.e.d.t.TargetDatabaseMapper.truncate    : ==> Parameters: 
+2022-09-01 16:27:13.041 DEBUG 9748 --- [main] com.example.demo.service.DemoService     : :::retrieving data... (batch count = 300,000).... 1/27
+2022-09-01 16:27:13.041 DEBUG 9748 --- [main] c.e.d.s.S.findDataByTableName            : ==>  Preparing: select * from a_test where id > 1610700 limit ? offset ?
+2022-09-01 16:27:13.041 DEBUG 9748 --- [main] c.e.d.s.S.findDataByTableName            : ==> Parameters: 300000(Long), 0(Long)
+2022-09-01 16:27:13.982 DEBUG 9748 --- [main] c.e.d.s.S.findDataByTableName            : <==      Total: 300000
+2022-09-01 16:27:14.266 DEBUG 9748 --- [main] com.example.demo.service.DemoService     : :::executing batch
+2022-09-01 16:27:15.387 DEBUG 9748 --- [main] com.example.demo.service.DemoService     : :::retrieving data... (batch count = 300,000).... 2/27
+2022-09-01 16:27:15.387 DEBUG 9748 --- [main] c.e.d.s.S.findDataByTableName            : ==>  Preparing: select * from a_test where id > 1610700 limit ? offset ?
+2022-09-01 16:27:15.387 DEBUG 9748 --- [main] c.e.d.s.S.findDataByTableName            : ==> Parameters: 300000(Long), 300000(Long)
+2022-09-01 16:27:16.451 DEBUG 9748 --- [main] c.e.d.s.S.findDataByTableName            : <==      Total: 300000
+2022-09-01 16:27:16.768 DEBUG 9748 --- [main] com.example.demo.service.DemoService     : :::executing batch
+2022-09-01 16:27:17.788 DEBUG 9748 --- [main] com.example.demo.service.DemoService     : :::retrieving data... (batch count = 300,000).... 3/27
+2022-09-01 16:27:17.788 DEBUG 9748 --- [main] c.e.d.s.S.findDataByTableName            : ==>  Preparing: select * from a_test where id > 1610700 limit ? offset ?
+2022-09-01 16:27:17.788 DEBUG 9748 --- [main] c.e.d.s.S.findDataByTableName            : ==> Parameters: 300000(Long), 600000(Long)
+2022-09-01 16:27:18.897 DEBUG 9748 --- [main] c.e.d.s.S.findDataByTableName            : <==      Total: 300000
+2022-09-01 16:27:19.115 DEBUG 9748 --- [main] com.example.demo.service.DemoService     : :::executing batch
+2022-09-01 16:27:20.151 DEBUG 9748 --- [main] com.example.demo.service.DemoService     : :::retrieving data... (batch count = 300,000).... 4/27
+2022-09-01 16:27:20.151 DEBUG 9748 --- [main] c.e.d.s.S.findDataByTableName            : ==>  Preparing: select * from a_test where id > 1610700 limit ? offset ?
+2022-09-01 16:27:20.151 DEBUG 9748 --- [main] c.e.d.s.S.findDataByTableName            : ==> Parameters: 300000(Long), 900000(Long)
+2022-09-01 16:27:21.312 DEBUG 9748 --- [main] c.e.d.s.S.findDataByTableName            : <==      Total: 300000
+2022-09-01 16:27:21.584 DEBUG 9748 --- [main] com.example.demo.service.DemoService     : :::executing batch
+2022-09-01 16:27:22.491 DEBUG 9748 --- [main] com.example.demo.service.DemoService     : :::retrieving data... (batch count = 300,000).... 5/27
+2022-09-01 16:27:22.491 DEBUG 9748 --- [main] c.e.d.s.S.findDataByTableName            : ==>  Preparing: select * from a_test where id > 1610700 limit ? offset ?
+2022-09-01 16:27:22.491 DEBUG 9748 --- [main] c.e.d.s.S.findDataByTableName            : ==> Parameters: 300000(Long), 1200000(Long)
+2022-09-01 16:27:23.896 DEBUG 9748 --- [main] c.e.d.s.S.findDataByTableName            : <==      Total: 300000
+2022-09-01 16:27:24.139 DEBUG 9748 --- [main] com.example.demo.service.DemoService     : :::executing batch
+2022-09-01 16:27:25.015 DEBUG 9748 --- [main] com.example.demo.service.DemoService     : :::retrieving data... (batch count = 300,000).... 6/27
+2022-09-01 16:27:25.015 DEBUG 9748 --- [main] c.e.d.s.S.findDataByTableName            : ==>  Preparing: select * from a_test where id > 1610700 limit ? offset ?
+2022-09-01 16:27:25.015 DEBUG 9748 --- [main] c.e.d.s.S.findDataByTableName            : ==> Parameters: 300000(Long), 1500000(Long)
+2022-09-01 16:27:26.759 DEBUG 9748 --- [main] c.e.d.s.S.findDataByTableName            : <==      Total: 300000
+2022-09-01 16:27:27.007 DEBUG 9748 --- [main] com.example.demo.service.DemoService     : :::executing batch
+2022-09-01 16:27:27.871 DEBUG 9748 --- [main] com.example.demo.service.DemoService     : :::retrieving data... (batch count = 300,000).... 7/27
+2022-09-01 16:27:27.871 DEBUG 9748 --- [main] c.e.d.s.S.findDataByTableName            : ==>  Preparing: select * from a_test where id > 1610700 limit ? offset ?
+2022-09-01 16:27:27.871 DEBUG 9748 --- [main] c.e.d.s.S.findDataByTableName            : ==> Parameters: 300000(Long), 1800000(Long)
+2022-09-01 16:27:29.789 DEBUG 9748 --- [main] c.e.d.s.S.findDataByTableName            : <==      Total: 300000
+2022-09-01 16:27:30.042 DEBUG 9748 --- [main] com.example.demo.service.DemoService     : :::executing batch
+2022-09-01 16:27:30.903 DEBUG 9748 --- [main] com.example.demo.service.DemoService     : :::retrieving data... (batch count = 300,000).... 8/27
+2022-09-01 16:27:30.903 DEBUG 9748 --- [main] c.e.d.s.S.findDataByTableName            : ==>  Preparing: select * from a_test where id > 1610700 limit ? offset ?
+2022-09-01 16:27:30.903 DEBUG 9748 --- [main] c.e.d.s.S.findDataByTableName            : ==> Parameters: 300000(Long), 2100000(Long)
+2022-09-01 16:27:33.112 DEBUG 9748 --- [main] c.e.d.s.S.findDataByTableName            : <==      Total: 300000
+2022-09-01 16:27:33.321 DEBUG 9748 --- [main] com.example.demo.service.DemoService     : :::executing batch
+2022-09-01 16:27:34.210 DEBUG 9748 --- [main] com.example.demo.service.DemoService     : :::retrieving data... (batch count = 300,000).... 9/27
+2022-09-01 16:27:34.210 DEBUG 9748 --- [main] c.e.d.s.S.findDataByTableName            : ==>  Preparing: select * from a_test where id > 1610700 limit ? offset ?
+2022-09-01 16:27:34.210 DEBUG 9748 --- [main] c.e.d.s.S.findDataByTableName            : ==> Parameters: 300000(Long), 2400000(Long)
+2022-09-01 16:27:36.559 DEBUG 9748 --- [main] c.e.d.s.S.findDataByTableName            : <==      Total: 300000
+2022-09-01 16:27:36.778 DEBUG 9748 --- [main] com.example.demo.service.DemoService     : :::executing batch
+2022-09-01 16:27:37.706 DEBUG 9748 --- [main] com.example.demo.service.DemoService     : :::retrieving data... (batch count = 300,000).... 10/27
+2022-09-01 16:27:37.706 DEBUG 9748 --- [main] c.e.d.s.S.findDataByTableName            : ==>  Preparing: select * from a_test where id > 1610700 limit ? offset ?
+2022-09-01 16:27:37.706 DEBUG 9748 --- [main] c.e.d.s.S.findDataByTableName            : ==> Parameters: 300000(Long), 2700000(Long)
+2022-09-01 16:27:40.176 DEBUG 9748 --- [main] c.e.d.s.S.findDataByTableName            : <==      Total: 300000
+2022-09-01 16:27:40.396 DEBUG 9748 --- [main] com.example.demo.service.DemoService     : :::executing batch
+2022-09-01 16:27:41.267 DEBUG 9748 --- [main] com.example.demo.service.DemoService     : :::retrieving data... (batch count = 300,000).... 11/27
+2022-09-01 16:27:41.284 DEBUG 9748 --- [main] c.e.d.s.S.findDataByTableName            : ==>  Preparing: select * from a_test where id > 1610700 limit ? offset ?
+2022-09-01 16:27:41.284 DEBUG 9748 --- [main] c.e.d.s.S.findDataByTableName            : ==> Parameters: 300000(Long), 3000000(Long)
+2022-09-01 16:27:43.875 DEBUG 9748 --- [main] c.e.d.s.S.findDataByTableName            : <==      Total: 300000
+2022-09-01 16:27:44.080 DEBUG 9748 --- [main] com.example.demo.service.DemoService     : :::executing batch
+2022-09-01 16:28:13.516  INFO 14048 --- [main] com.example.demo.DemoApplication         : Starting DemoApplication using Java 11 on DESKTOP-0PC7AQK with PID 14048 (D:\Dev\batch-update\out\production\classes started by lemonbada in D:\Dev\batch-update)
+2022-09-01 16:28:13.516 DEBUG 14048 --- [main] com.example.demo.DemoApplication         : Running with Spring Boot v2.7.2, Spring v5.3.22
+2022-09-01 16:28:13.516  INFO 14048 --- [main] com.example.demo.DemoApplication         : No active profile set, falling back to 1 default profile: "default"
+2022-09-01 16:28:14.264  INFO 14048 --- [main] com.example.demo.DemoApplication         : Started DemoApplication in 1.155 seconds (JVM running for 1.484)
+2022-09-01 16:28:14.264 DEBUG 14048 --- [main] com.example.demo.service.DemoService     : :::retrieving meta... pmsportal.a_test
+2022-09-01 16:28:14.344 DEBUG 14048 --- [main] .e.d.s.S.findColumnsBySchemaAndTableName : ==>  Preparing: select column_name from information_schema.columns where table_schema = ? and table_name = ? order by ORDINAL_POSITION
+2022-09-01 16:28:14.359 DEBUG 14048 --- [main] .e.d.s.S.findColumnsBySchemaAndTableName : ==> Parameters: pmsportal(String), a_test(String)
+2022-09-01 16:28:14.391 DEBUG 14048 --- [main] .e.d.s.S.findColumnsBySchemaAndTableName : <==      Total: 21
+2022-09-01 16:28:14.391 DEBUG 14048 --- [main] com.example.demo.service.DemoService     : :::counting... pmsportal.a_test
+2022-09-01 16:28:14.422 DEBUG 14048 --- [main] c.e.d.source.SourceDatabaseMapper.count  : ==>  Preparing: select count(*) from pmsportal.a_test where id > 9000000
+2022-09-01 16:28:14.422 DEBUG 14048 --- [main] c.e.d.source.SourceDatabaseMapper.count  : ==> Parameters: 
+2022-09-01 16:28:14.770 DEBUG 14048 --- [main] c.e.d.source.SourceDatabaseMapper.count  : <==      Total: 1
+2022-09-01 16:28:14.770 DEBUG 14048 --- [main] com.example.demo.service.DemoService     : :::truncating....pmsdata.a_test
+2022-09-01 16:28:14.770 DEBUG 14048 --- [main] c.e.d.t.TargetDatabaseMapper.truncate    : ==>  Preparing: truncate table pmsdata.a_test
+2022-09-01 16:28:14.770 DEBUG 14048 --- [main] c.e.d.t.TargetDatabaseMapper.truncate    : ==> Parameters: 
+2022-09-01 16:28:14.818 DEBUG 14048 --- [main] com.example.demo.service.DemoService     : :::retrieving data... (batch count = 300,000).... 1/3
+2022-09-01 16:28:14.818 DEBUG 14048 --- [main] c.e.d.s.S.findDataByTableName            : ==>  Preparing: select * from a_test where id > 9000000 limit ? offset ?
+2022-09-01 16:28:14.818 DEBUG 14048 --- [main] c.e.d.s.S.findDataByTableName            : ==> Parameters: 300000(Long), 0(Long)
+2022-09-01 16:28:15.740 DEBUG 14048 --- [main] c.e.d.s.S.findDataByTableName            : <==      Total: 300000
+2022-09-01 16:28:16.048 DEBUG 14048 --- [main] com.example.demo.service.DemoService     : :::executing batch
+2022-09-01 16:28:17.178 DEBUG 14048 --- [main] com.example.demo.service.DemoService     : :::retrieving data... (batch count = 300,000).... 2/3
+2022-09-01 16:28:17.178 DEBUG 14048 --- [main] c.e.d.s.S.findDataByTableName            : ==>  Preparing: select * from a_test where id > 9000000 limit ? offset ?
+2022-09-01 16:28:17.178 DEBUG 14048 --- [main] c.e.d.s.S.findDataByTableName            : ==> Parameters: 300000(Long), 300000(Long)
+2022-09-01 16:28:18.476 DEBUG 14048 --- [main] c.e.d.s.S.findDataByTableName            : <==      Total: 300000
+2022-09-01 16:28:18.792 DEBUG 14048 --- [main] com.example.demo.service.DemoService     : :::executing batch
+2022-09-01 16:28:19.745 DEBUG 14048 --- [main] com.example.demo.service.DemoService     : :::retrieving data... (batch count = 300,000).... 3/3
+2022-09-01 16:28:19.745 DEBUG 14048 --- [main] c.e.d.s.S.findDataByTableName            : ==>  Preparing: select * from a_test where id > 9000000 limit ? offset ?
+2022-09-01 16:28:19.745 DEBUG 14048 --- [main] c.e.d.s.S.findDataByTableName            : ==> Parameters: 300000(Long), 600000(Long)
+2022-09-01 16:28:20.549 DEBUG 14048 --- [main] c.e.d.s.S.findDataByTableName            : <==      Total: 180660
+2022-09-01 16:28:20.764 DEBUG 14048 --- [main] com.example.demo.service.DemoService     : :::executing batch
+2022-09-01 16:28:56.168  INFO 2344 --- [main] com.example.demo.DemoApplication         : Starting DemoApplication using Java 11 on DESKTOP-0PC7AQK with PID 2344 (D:\Dev\batch-update\out\production\classes started by lemonbada in D:\Dev\batch-update)
+2022-09-01 16:28:56.168 DEBUG 2344 --- [main] com.example.demo.DemoApplication         : Running with Spring Boot v2.7.2, Spring v5.3.22
+2022-09-01 16:28:56.168  INFO 2344 --- [main] com.example.demo.DemoApplication         : No active profile set, falling back to 1 default profile: "default"
+2022-09-01 16:28:56.896  INFO 2344 --- [main] com.example.demo.DemoApplication         : Started DemoApplication in 1.102 seconds (JVM running for 1.399)
+2022-09-01 16:28:56.896 DEBUG 2344 --- [main] com.example.demo.service.DemoService     : :::retrieving meta... pmsportal.a_test
+2022-09-01 16:28:56.993 DEBUG 2344 --- [main] .e.d.s.S.findColumnsBySchemaAndTableName : ==>  Preparing: select column_name from information_schema.columns where table_schema = ? and table_name = ? order by ORDINAL_POSITION
+2022-09-01 16:28:57.008 DEBUG 2344 --- [main] .e.d.s.S.findColumnsBySchemaAndTableName : ==> Parameters: pmsportal(String), a_test(String)
+2022-09-01 16:28:57.024 DEBUG 2344 --- [main] .e.d.s.S.findColumnsBySchemaAndTableName : <==      Total: 21
+2022-09-01 16:28:57.040 DEBUG 2344 --- [main] com.example.demo.service.DemoService     : :::counting... pmsportal.a_test
+2022-09-01 16:28:57.056 DEBUG 2344 --- [main] c.e.d.source.SourceDatabaseMapper.count  : ==>  Preparing: select count(*) from pmsportal.a_test where id > 19000000
+2022-09-01 16:28:57.056 DEBUG 2344 --- [main] c.e.d.source.SourceDatabaseMapper.count  : ==> Parameters: 
+2022-09-01 16:28:57.056 DEBUG 2344 --- [main] c.e.d.source.SourceDatabaseMapper.count  : <==      Total: 1
+2022-09-01 16:28:57.056 DEBUG 2344 --- [main] com.example.demo.service.DemoService     : :::truncating....pmsdata.a_test
+2022-09-01 16:28:57.071 DEBUG 2344 --- [main] c.e.d.t.TargetDatabaseMapper.truncate    : ==>  Preparing: truncate table pmsdata.a_test
+2022-09-01 16:28:57.071 DEBUG 2344 --- [main] c.e.d.t.TargetDatabaseMapper.truncate    : ==> Parameters: 
+2022-09-01 16:29:06.265  INFO 13080 --- [main] com.example.demo.DemoApplication         : Starting DemoApplication using Java 11 on DESKTOP-0PC7AQK with PID 13080 (D:\Dev\batch-update\out\production\classes started by lemonbada in D:\Dev\batch-update)
+2022-09-01 16:29:06.268 DEBUG 13080 --- [main] com.example.demo.DemoApplication         : Running with Spring Boot v2.7.2, Spring v5.3.22
+2022-09-01 16:29:06.268  INFO 13080 --- [main] com.example.demo.DemoApplication         : No active profile set, falling back to 1 default profile: "default"
+2022-09-01 16:29:06.979  INFO 13080 --- [main] com.example.demo.DemoApplication         : Started DemoApplication in 1.094 seconds (JVM running for 1.385)
+2022-09-01 16:29:06.979 DEBUG 13080 --- [main] com.example.demo.service.DemoService     : :::retrieving meta... pmsportal.a_test
+2022-09-01 16:29:07.057 DEBUG 13080 --- [main] .e.d.s.S.findColumnsBySchemaAndTableName : ==>  Preparing: select column_name from information_schema.columns where table_schema = ? and table_name = ? order by ORDINAL_POSITION
+2022-09-01 16:29:07.073 DEBUG 13080 --- [main] .e.d.s.S.findColumnsBySchemaAndTableName : ==> Parameters: pmsportal(String), a_test(String)
+2022-09-01 16:29:07.104 DEBUG 13080 --- [main] .e.d.s.S.findColumnsBySchemaAndTableName : <==      Total: 21
+2022-09-01 16:29:07.121 DEBUG 13080 --- [main] com.example.demo.service.DemoService     : :::counting... pmsportal.a_test
+2022-09-01 16:29:07.137 DEBUG 13080 --- [main] c.e.d.source.SourceDatabaseMapper.count  : ==>  Preparing: select count(*) from pmsportal.a_test where id > 9000000
+2022-09-01 16:29:07.137 DEBUG 13080 --- [main] c.e.d.source.SourceDatabaseMapper.count  : ==> Parameters: 
+2022-09-01 16:29:07.273 DEBUG 13080 --- [main] c.e.d.source.SourceDatabaseMapper.count  : <==      Total: 1
+2022-09-01 16:29:07.273 DEBUG 13080 --- [main] com.example.demo.service.DemoService     : :::truncating....pmsdata.a_test
+2022-09-01 16:29:07.273 DEBUG 13080 --- [main] c.e.d.t.TargetDatabaseMapper.truncate    : ==>  Preparing: truncate table pmsdata.a_test
+2022-09-01 16:29:07.273 DEBUG 13080 --- [main] c.e.d.t.TargetDatabaseMapper.truncate    : ==> Parameters: 
+2022-09-01 16:29:07.301 DEBUG 13080 --- [main] com.example.demo.service.DemoService     : :::retrieving data... (batch count = 300,000).... 1/3
+2022-09-01 16:29:07.301 DEBUG 13080 --- [main] c.e.d.s.S.findDataByTableName            : ==>  Preparing: select * from a_test where id > 9000000 limit ? offset ?
+2022-09-01 16:29:07.301 DEBUG 13080 --- [main] c.e.d.s.S.findDataByTableName            : ==> Parameters: 300000(Long), 0(Long)
+2022-09-01 16:29:08.195 DEBUG 13080 --- [main] c.e.d.s.S.findDataByTableName            : <==      Total: 300000
+2022-09-01 16:29:08.444 DEBUG 13080 --- [main] com.example.demo.service.DemoService     : :::executing batch
+2022-09-01 16:29:09.724 DEBUG 13080 --- [main] com.example.demo.service.DemoService     : :::retrieving data... (batch count = 300,000).... 2/3
+2022-09-01 16:29:09.738 DEBUG 13080 --- [main] c.e.d.s.S.findDataByTableName            : ==>  Preparing: select * from a_test where id > 9000000 limit ? offset ?
+2022-09-01 16:29:09.738 DEBUG 13080 --- [main] c.e.d.s.S.findDataByTableName            : ==> Parameters: 300000(Long), 300000(Long)
+2022-09-01 16:29:10.876 DEBUG 13080 --- [main] c.e.d.s.S.findDataByTableName            : <==      Total: 300000
+2022-09-01 16:29:11.107 DEBUG 13080 --- [main] com.example.demo.service.DemoService     : :::executing batch
+2022-09-01 16:29:12.248 DEBUG 13080 --- [main] com.example.demo.service.DemoService     : :::retrieving data... (batch count = 300,000).... 3/3
+2022-09-01 16:29:12.248 DEBUG 13080 --- [main] c.e.d.s.S.findDataByTableName            : ==>  Preparing: select * from a_test where id > 9000000 limit ? offset ?
+2022-09-01 16:29:12.248 DEBUG 13080 --- [main] c.e.d.s.S.findDataByTableName            : ==> Parameters: 300000(Long), 600000(Long)
+2022-09-01 16:29:12.985 DEBUG 13080 --- [main] c.e.d.s.S.findDataByTableName            : <==      Total: 180660
+2022-09-01 16:29:13.113 DEBUG 13080 --- [main] com.example.demo.service.DemoService     : :::executing batch
+2022-09-01 16:29:42.717  INFO 3896 --- [main] com.example.demo.DemoApplication         : Starting DemoApplication using Java 11 on DESKTOP-0PC7AQK with PID 3896 (D:\Dev\batch-update\out\production\classes started by lemonbada in D:\Dev\batch-update)
+2022-09-01 16:29:42.717 DEBUG 3896 --- [main] com.example.demo.DemoApplication         : Running with Spring Boot v2.7.2, Spring v5.3.22
+2022-09-01 16:29:42.717  INFO 3896 --- [main] com.example.demo.DemoApplication         : No active profile set, falling back to 1 default profile: "default"
+2022-09-01 16:29:43.474  INFO 3896 --- [main] com.example.demo.DemoApplication         : Started DemoApplication in 1.12 seconds (JVM running for 1.446)
+2022-09-01 16:29:43.474 DEBUG 3896 --- [main] com.example.demo.service.DemoService     : :::retrieving meta... pmsportal.a_test
+2022-09-01 16:29:43.603 DEBUG 3896 --- [main] .e.d.s.S.findColumnsBySchemaAndTableName : ==>  Preparing: select column_name from information_schema.columns where table_schema = ? and table_name = ? order by ORDINAL_POSITION
+2022-09-01 16:29:43.617 DEBUG 3896 --- [main] .e.d.s.S.findColumnsBySchemaAndTableName : ==> Parameters: pmsportal(String), a_test(String)
+2022-09-01 16:29:43.637 DEBUG 3896 --- [main] .e.d.s.S.findColumnsBySchemaAndTableName : <==      Total: 21
+2022-09-01 16:29:43.648 DEBUG 3896 --- [main] com.example.demo.service.DemoService     : :::counting... pmsportal.a_test
+2022-09-01 16:29:43.664 DEBUG 3896 --- [main] c.e.d.source.SourceDatabaseMapper.count  : ==>  Preparing: select count(*) from pmsportal.a_test where id > 9000000
+2022-09-01 16:29:43.664 DEBUG 3896 --- [main] c.e.d.source.SourceDatabaseMapper.count  : ==> Parameters: 
+2022-09-01 16:29:43.798 DEBUG 3896 --- [main] c.e.d.source.SourceDatabaseMapper.count  : <==      Total: 1
+2022-09-01 16:29:43.798 DEBUG 3896 --- [main] com.example.demo.service.DemoService     : :::truncating....pmsdata.a_test
+2022-09-01 16:29:43.806 DEBUG 3896 --- [main] c.e.d.t.TargetDatabaseMapper.truncate    : ==>  Preparing: truncate table pmsdata.a_test
+2022-09-01 16:29:43.806 DEBUG 3896 --- [main] c.e.d.t.TargetDatabaseMapper.truncate    : ==> Parameters: 
+2022-09-01 16:29:43.828 DEBUG 3896 --- [main] com.example.demo.service.DemoService     : :::retrieving data... (batch count = 300,000).... 1/3
+2022-09-01 16:29:43.828 DEBUG 3896 --- [main] c.e.d.s.S.findDataByTableName            : ==>  Preparing: select * from a_test where id > 9000000 limit ? offset ?
+2022-09-01 16:29:43.828 DEBUG 3896 --- [main] c.e.d.s.S.findDataByTableName            : ==> Parameters: 300000(Long), 0(Long)
+2022-09-01 16:29:44.788 DEBUG 3896 --- [main] c.e.d.s.S.findDataByTableName            : <==      Total: 300000
+2022-09-01 16:29:45.063 DEBUG 3896 --- [main] com.example.demo.service.DemoService     : :::executing batch
+2022-09-01 16:29:46.313 DEBUG 3896 --- [main] com.example.demo.service.DemoService     : :::retrieving data... (batch count = 300,000).... 2/3
+2022-09-01 16:29:46.313 DEBUG 3896 --- [main] c.e.d.s.S.findDataByTableName            : ==>  Preparing: select * from a_test where id > 9000000 limit ? offset ?
+2022-09-01 16:29:46.317 DEBUG 3896 --- [main] c.e.d.s.S.findDataByTableName            : ==> Parameters: 300000(Long), 300000(Long)
+2022-09-01 16:29:47.339 DEBUG 3896 --- [main] c.e.d.s.S.findDataByTableName            : <==      Total: 300000
+2022-09-01 16:29:47.606 DEBUG 3896 --- [main] com.example.demo.service.DemoService     : :::executing batch
+2022-09-01 16:29:48.743 DEBUG 3896 --- [main] com.example.demo.service.DemoService     : :::retrieving data... (batch count = 300,000).... 3/3
+2022-09-01 16:29:48.743 DEBUG 3896 --- [main] c.e.d.s.S.findDataByTableName            : ==>  Preparing: select * from a_test where id > 9000000 limit ? offset ?
+2022-09-01 16:29:48.743 DEBUG 3896 --- [main] c.e.d.s.S.findDataByTableName            : ==> Parameters: 300000(Long), 600000(Long)
+2022-09-01 16:29:49.627 DEBUG 3896 --- [main] c.e.d.s.S.findDataByTableName            : <==      Total: 180660
+2022-09-01 16:29:49.780 DEBUG 3896 --- [main] com.example.demo.service.DemoService     : :::executing batch

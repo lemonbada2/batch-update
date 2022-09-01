@@ -3,6 +3,8 @@ package com.example.demo.service;
 import com.example.demo.source.SourceDatabaseMapper;
 import com.example.demo.target.TargetDatabaseMapper;
 import org.mybatis.spring.SqlSessionTemplate;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
@@ -37,11 +39,14 @@ public class DemoService {
     @Value("${demo.batch-count}")
     Long batchCount;
 
-    @Value("${demo.source-prefix}")
-    String sourcePrefix;
+    @Value("${demo.source-schema}")
+    String sourceSchema;
 
-    @Value("${demo.target-prefix}")
-    String targetPrefix;
+    @Value("${demo.target-schema}")
+    String targetSchema;
+
+    @Value("${demo.source-where-clause}")
+    String sourceWhereClause;
 
 
     public Boolean isEmpty(String str){
@@ -49,29 +54,35 @@ public class DemoService {
         return str.isEmpty();
     }
 
+    private Logger logger =  LoggerFactory.getLogger(this.getClass());
+
+    private void displayMessage(String message){
+        logger.debug(MessageFormat.format(":::{0}", message));
+    }
     public void batch() {
 
-        StopWatch stopWatch = new StopWatch();
+        String whereClause = isEmpty(sourceWhereClause) ? " 1 = 1" : sourceWhereClause;
 
         tables.stream().forEach(table -> {
 
-            var sourceTable = isEmpty(sourcePrefix) ? table : MessageFormat.format("{0}.{1}", sourcePrefix, table);
-            var targetTable = isEmpty(targetPrefix) ? table : MessageFormat.format("{0}.{1}", targetPrefix, table);
+            var sourceTable = table; // isEmpty(sourceSchema) ? table : MessageFormat.format("{0}.{1}", sourceSchema, table);
+            var targetTable = table; // isEmpty(targetSchema) ? table : MessageFormat.format("{0}.{1}", targetSchema, table);
 
-            System.out.println(MessageFormat.format(">>> retrieving meta....{0}", sourceTable));
-            var columns = sourceDatabaseMapper.findColumnsByTableName(sourceTable);
+            displayMessage(MessageFormat.format("retrieving meta... {0}.{1}", sourceSchema, sourceTable));
+            var columns = sourceDatabaseMapper.findColumnsBySchemaAndTableName(sourceSchema, sourceTable);
 
-            System.out.println(MessageFormat.format(">>> counting....{0}", sourceTable));
-            var totalCount = sourceDatabaseMapper.count(table);
+            displayMessage(MessageFormat.format("counting... {0}.{1}", sourceSchema, sourceTable));
+            var totalCount = sourceDatabaseMapper.count(sourceSchema, table, whereClause);
 
             if(truncateTarget) {
-                System.out.println(MessageFormat.format(">>> truncate....{0}", targetTable));
-                targetDatabaseMapper.truncate(targetTable);
+                displayMessage(MessageFormat.format("truncating....{0}.{1}", targetSchema, targetTable));
+                targetDatabaseMapper.truncate(targetSchema, targetTable);
             }
 
             var pageSize = Math.ceil(totalCount * 1.0 / batchCount);
 
-            var query = MessageFormat.format("INSERT INTO {0} ({1}) VALUES ({2})",
+            var query = MessageFormat.format("INSERT INTO {0}.{1} ({2}) VALUES ({3})",
+                    targetSchema,
                     targetTable,
                     String.join(",", columns),
                     columns.stream().map(column -> "?").collect(Collectors.joining(",")));
@@ -86,40 +97,28 @@ public class DemoService {
 
                 for (var page = 0; page < pageSize; page++) {
 
-                    System.out.println(MessageFormat.format(">> retrieving data (batch count = {2}).... {0}/{1}", page + 1, pageSize, batchCount));
+                    displayMessage(MessageFormat.format("retrieving data... (batch count = {2}).... {0}/{1}", page + 1, pageSize, batchCount));
 
                     var offset = page * batchCount;
-                    stopWatch.start("[RETRIVE]");
-                    var data = sourceDatabaseMapper.findDataByTableName(sourceTable, batchCount, offset);
-                    stopWatch.stop();
-                    System.out.println(">> retrieve : " + stopWatch.getTotalTimeSeconds());
+                    var data = sourceDatabaseMapper.findDataByTableName(sourceTable, whereClause, batchCount, offset);
 
-                    stopWatch.start("[GATHER]");
                     for (var i = 0; i < data.size(); i++) {
                         for (var j = 1; j <= columns.size(); j++) {
                             ps.setObject(j, data.get(i).get(columns.get(j - 1)));
                         }
                         ps.addBatch();
                     }
-                    stopWatch.stop();
-                    System.out.println(">> gather : " + stopWatch.getTotalTimeSeconds());
 
-                    System.out.println(">> executing batch");
-                    stopWatch.start("[BATCH]");
+                    displayMessage("executing batch");
 
                     ps.executeBatch();
                     ps.clearBatch();
-
-                    stopWatch.stop();
-                    System.out.println(">> batch : " + stopWatch.getTotalTimeSeconds());
                 }
-
                 connection.commit();
 
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-
 
         });
 
