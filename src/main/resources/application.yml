@@ -12,11 +12,11 @@ demo:
       username: lemonbada
       password: fpahsqkek
       driver-class-name: org.mariadb.jdbc.Driver
-  batch-count: 300_000
+  batch-count: 1000_000
   truncate-target: true
   tables: a_test
   source-schema: pmsportal
-  source-where-clause: id > 9000000
+  source-where-clause:
   target-schema: pmsdata
 
 logging:

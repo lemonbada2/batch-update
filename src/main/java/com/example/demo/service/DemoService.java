@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StopWatch;
 
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.text.MessageFormat;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -49,16 +50,17 @@ public class DemoService {
     String sourceWhereClause;
 
 
-    public Boolean isEmpty(String str){
-        if(str==null) return true;
+    public Boolean isEmpty(String str) {
+        if (str == null) return true;
         return str.isEmpty();
     }
 
-    private Logger logger =  LoggerFactory.getLogger(this.getClass());
+    private Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    private void displayMessage(String message){
+    private void displayMessage(String message) {
         logger.debug(MessageFormat.format(":::{0}", message));
     }
+
     public void batch() {
 
         String whereClause = isEmpty(sourceWhereClause) ? " 1 = 1" : sourceWhereClause;
@@ -74,7 +76,7 @@ public class DemoService {
             displayMessage(MessageFormat.format("counting... {0}.{1}", sourceSchema, sourceTable));
             var totalCount = sourceDatabaseMapper.count(sourceSchema, table, whereClause);
 
-            if(truncateTarget) {
+            if (truncateTarget) {
                 displayMessage(MessageFormat.format("truncating....{0}.{1}", targetSchema, targetTable));
                 targetDatabaseMapper.truncate(targetSchema, targetTable);
             }
@@ -84,7 +86,7 @@ public class DemoService {
             var query = MessageFormat.format("INSERT INTO {0}.{1} ({2}) VALUES ({3})",
                     targetSchema,
                     targetTable,
-                    String.join(",", columns),
+                    "`" + String.join("`,`", columns) + "`",
                     columns.stream().map(column -> "?").collect(Collectors.joining(",")));
 
 
@@ -92,15 +94,19 @@ public class DemoService {
                     var sqlSession = sqlSessionTemplate.getSqlSessionFactory().openSession();
                     var connection = sqlSession.getConnection();
                     var ps = connection.prepareStatement(query);
+                    var stmt = connection.createStatement();
             ) {
 
+                //stmt.execute("SET @@session.unique_checks = 0;");
+                //stmt.execute("SET @@session.foreign_key_checks = 0;");
+                //stmt.execute("set session bulk_insert_buffer_size=1024*1024*256");
 
                 for (var page = 0; page < pageSize; page++) {
 
                     displayMessage(MessageFormat.format("retrieving data... (batch count = {2}).... {0}/{1}", page + 1, pageSize, batchCount));
 
                     var offset = page * batchCount;
-                    var data = sourceDatabaseMapper.findDataByTableName(sourceTable, whereClause, batchCount, offset);
+                    var data = sourceDatabaseMapper.findDataByTableName(sourceSchema, sourceTable, whereClause, batchCount, offset);
 
                     for (var i = 0; i < data.size(); i++) {
                         for (var j = 1; j <= columns.size(); j++) {
@@ -118,6 +124,7 @@ public class DemoService {
 
             } catch (SQLException e) {
                 e.printStackTrace();
+                throw new RuntimeException(e.getMessage());
             }
 
         });
