@@ -96,11 +96,6 @@ public class DemoService {
                     var ps = connection.prepareStatement(query);
                     var stmt = connection.createStatement();
             ) {
-
-                //stmt.execute("SET @@session.unique_checks = 0;");
-                //stmt.execute("SET @@session.foreign_key_checks = 0;");
-                //stmt.execute("set session bulk_insert_buffer_size=1024*1024*256");
-
                 for (var page = 0; page < pageSize; page++) {
 
                     displayMessage(MessageFormat.format("retrieving data... (batch count = {2}).... {0}/{1}", page + 1, pageSize, batchCount));
@@ -121,7 +116,6 @@ public class DemoService {
                     ps.clearBatch();
                 }
                 connection.commit();
-
             } catch (SQLException e) {
                 e.printStackTrace();
                 throw new RuntimeException(e.getMessage());
